@@ -8,10 +8,19 @@ use App\Model\Produto;
 class ProdutoDbTest extends TestCase
 {
 
+    private $crud;
+
+    /*
+     * Toda vez que um metodo for executado, sempre vai chamar o SetUp antes...
+     */
+    public function setUp()
+    {
+        $this->crud = new ServiceProduto();
+    }
+
     public function testSave()
     {
         $produto = new Produto();
-        $crud = new ServiceProduto();
 
         $produto->hidratador(
             [
@@ -22,7 +31,7 @@ class ProdutoDbTest extends TestCase
             ]
         );
 
-        $this->assertNotFalse($crud->save($produto));
+        $this->assertNotFalse($this->crud->save($produto));
 
     }
 
@@ -41,7 +50,6 @@ class ProdutoDbTest extends TestCase
     public function testDelete()
     {
         $produto = new Produto();
-        $crud = new ServiceProduto();
 
         $produto->hidratador(
             [
@@ -49,6 +57,6 @@ class ProdutoDbTest extends TestCase
             ]
         );
 
-        $this->assertNotFalse($crud->delete($produto));
+        $this->assertNotFalse($this->crud->delete($produto));
     }
 }
