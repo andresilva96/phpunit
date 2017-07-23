@@ -43,9 +43,9 @@ class ProdutoEncapsulamentoTest extends TestCase
         $this->assertEquals(2, $produto->getQuantidade());
     }
 
-    public function testTotal()
+    /*public function testTotal()
     {
         $produto = new Produto();
         $this->assertNull($produto->getTotal());
-    }
+    }*/
 }

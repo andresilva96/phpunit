@@ -21,6 +21,15 @@ class Produto
     }
 
     /**
+     * @param mixed $id
+     */
+    public function setId(Int $id): Produto
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getNome(): ?String
@@ -76,24 +85,15 @@ class Produto
      */
     public function getTotal(): ?float
     {
-        return $this->total;
-    }
-
-    /**
-     * @param mixed $total
-     */
-    public function setTotal(float $total): Produto
-    {
-        $this->total = $total * $this->quantidade;
-        return $this;
+        return $this->quantidade * $this->preco;
     }
 
     public function hidratador(array $data)
     {
+        isset($data['id']) ? $this->setId($data['id']) : null;
         isset($data['nome']) ? $this->setNome($data['nome']) : null;
         isset($data['preco']) ? $this->setPreco($data['preco']) : null;
         isset($data['quantidade']) ? $this->setQuantidade($data['quantidade']) : null;
-        isset($data['total']) ? $this->setTotal($data['total']) : null;
     }
 
 }
